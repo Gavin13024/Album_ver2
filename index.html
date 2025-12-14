@@ -56,6 +56,56 @@ button {
 .left {
   padding: 40px;
   overflow-y: auto;
+  position: relative;
+  background: #f6f1e7;
+}
+
+/* ===== BỌC DANH SÁCH ALBUM ===== */
+.album-wrapper {
+  margin-top: 80px;          /* đưa cả khối xuống thấp */
+  max-width: 240px;          /* độ rộng khối */
+  margin-left: auto;
+  margin-right: auto;        /* căn giữa khối theo ngang */
+}
+
+/* Tiêu đề Album */
+.album-title {
+  font-size: 26px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.year-art {
+  width: 220px;
+  margin-bottom: 30px;
+}
+
+/* Danh sách album */
+.album-list div {
+  text-align: left;          /* chữ căn trái */
+  padding: 8px 0;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Hover cho sang */
+.album-list div:hover {
+  text-decoration: underline;
+}
+
+/* lớp mờ tiếp giáp */
+.left::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 100%;
+  pointer-events: none;
+  background: linear-gradient(to right,
+    rgba(246,241,231,1),
+    rgba(246,241,231,0)
+  );
 }
 
 .year {
@@ -151,9 +201,12 @@ button {
 <!-- HOME -->
 <div id="homePage">
   <div class="left">
-    <div class="year" id="yearText"></div>
-    <div class="album-title">Album</div>
-    <div class="album-list" id="albumList"></div>
+    <img src="images/2026.png" class="year-art">
+
+    <div class="album-wrapper">
+      <div class="album-title">Album</div>
+      <div class="album-list" id="albumList"></div>
+    </div>
   </div>
   <div class="right">
     <img id="coverImg">
