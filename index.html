@@ -98,15 +98,18 @@ button {
   content: "";
   position: absolute;
   top: 0;
-  right: 0;
-  width: 80px;
+  right: -1px;
+  width: 100px;
   height: 100%;
   pointer-events: none;
-  background: linear-gradient(to right,
-    rgba(246,241,231,1),
-    rgba(246,241,231,0)
+  background: linear-gradient(
+    to right,
+    rgba(246,241,231,1) 0%,
+    rgba(246,241,231,0) 100%
   );
+  z-index: 10;
 }
+
 
 .year {
   font-size: 56px;
@@ -229,7 +232,6 @@ const loginPage = document.getElementById("loginPage");
 const homePage = document.getElementById("homePage");
 const albumView = document.getElementById("albumView");
 const passwordInput = document.getElementById("passwordInput");
-const yearText = document.getElementById("yearText");
 const coverImg = document.getElementById("coverImg");
 const albumList = document.getElementById("albumList");
 
