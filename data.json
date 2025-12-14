@@ -1,0 +1,35 @@
+{
+  "year": "2026",
+  "cover": "images/cover.jpg",
+
+  "albums": [
+    {
+      "title": "Đà Lạt",
+      "photos": [
+        "images/dalat1.jpg",
+        "images/dalat3.jpg"
+      ]
+    },
+    {
+      "title": "Tốt nghiệp",
+      "photos": [
+        "images/totnghiep1.jpg",
+        "images/tn2.jpg"
+      ]
+    },
+    {
+      "title": "Hòn Sơn",
+      "photos": [
+        "images/honson1.jpg",
+        "images/honson2.jpg"
+      ]
+    },
+    {
+      "title": "Tết",
+      "photos": [
+        "images/tet1.jpg",
+        "images/tet2.jpg"
+      ]
+    }
+  ]
+}
