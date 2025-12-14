@@ -15,7 +15,7 @@ body {
 }
 
 /* ===== LOGIN ===== */
-#login {
+#loginPage {
   height: 100vh;
   display: flex;
   align-items: center;
@@ -27,6 +27,7 @@ body {
   padding: 30px;
   border-radius: 20px;
   text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 input, button {
@@ -44,7 +45,7 @@ button {
 }
 
 /* ===== HOME ===== */
-#home {
+#homePage {
   display: none;
   height: 100vh;
   display: grid;
@@ -104,6 +105,7 @@ button {
 
 .gallery img {
   width: 100%;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -115,6 +117,7 @@ button {
   display: none;
   align-items: center;
   justify-content: center;
+  z-index: 999;
 }
 
 #overlay img {
@@ -136,28 +139,28 @@ button {
 <body>
 
 <!-- LOGIN -->
-<div id="login">
+<div id="loginPage">
   <div class="login-box">
     <h3>Nhập mật khẩu</h3>
-    <input type="password" id="password">
+    <input type="password" id="passwordInput" placeholder="Mật khẩu">
     <br>
-    <button onclick="login()">Truy cập</button>
+    <button onclick="doLogin()">Truy cập</button>
   </div>
 </div>
 
 <!-- HOME -->
-<div id="home">
+<div id="homePage">
   <div class="left">
-    <div class="year" id="year"></div>
+    <div class="year" id="yearText"></div>
     <div class="album-title">Album</div>
     <div class="album-list" id="albumList"></div>
   </div>
   <div class="right">
-    <img id="cover">
+    <img id="coverImg">
   </div>
 </div>
 
-<!-- ALBUM -->
+<!-- ALBUM VIEW -->
 <div id="albumView"></div>
 
 <!-- FULLSCREEN -->
@@ -168,22 +171,38 @@ button {
 
 <script>
 const PASSWORD = "giadinh";
+
+const loginPage = document.getElementById("loginPage");
+const homePage = document.getElementById("homePage");
+const albumView = document.getElementById("albumView");
+const passwordInput = document.getElementById("passwordInput");
+const yearText = document.getElementById("yearText");
+const coverImg = document.getElementById("coverImg");
+const albumList = document.getElementById("albumList");
+
+const overlay = document.getElementById("overlay");
+const overlayImg = document.getElementById("overlayImg");
+
 let albums = [];
 
-function login() {
-  if (password.value === PASSWORD) {
-    login.style.display = "none";
-    home.style.display = "grid";
+/* ===== LOGIN ===== */
+function doLogin() {
+  if (passwordInput.value === PASSWORD) {
+    loginPage.style.display = "none";
+    homePage.style.display = "grid";
     loadData();
-  } else alert("Sai mật khẩu");
+  } else {
+    alert("Sai mật khẩu");
+  }
 }
 
+/* ===== LOAD DATA ===== */
 function loadData() {
   fetch("data.json")
     .then(res => res.json())
     .then(data => {
-      year.innerText = data.year;
-      cover.src = data.cover;
+      yearText.innerText = data.year;
+      coverImg.src = data.cover;
       albums = data.albums;
 
       albumList.innerHTML = "";
@@ -196,8 +215,9 @@ function loadData() {
     });
 }
 
+/* ===== OPEN ALBUM ===== */
 function openAlbum(index) {
-  home.style.display = "none";
+  homePage.style.display = "none";
   albumView.style.display = "block";
 
   const album = albums[index];
@@ -210,11 +230,13 @@ function openAlbum(index) {
   `;
 }
 
+/* ===== BACK ===== */
 function goBack() {
   albumView.style.display = "none";
-  home.style.display = "grid";
+  homePage.style.display = "grid";
 }
 
+/* ===== FULLSCREEN ===== */
 function showImage(src) {
   overlayImg.src = src;
   overlay.style.display = "flex";
